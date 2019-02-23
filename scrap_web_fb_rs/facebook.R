@@ -6,6 +6,7 @@ library(pbapply)
 library(parallel)
 library(igraph)
 library(Rtsne)
+library(wordcloud)
 
 getLoginDetails <- function(){
   ## Based on code by Barry Rowlingson
@@ -240,14 +241,11 @@ save.image("red_social.RData")
 
 
 sl=red[,1]!=1 & (red[,1] %in% red[red[,1]==1,2]) & (red[,2] %in% red[red[,1]==1,2]) 
-
-library(igraph)
 temp=as.data.frame(red[sl,])
 colnames(temp)=c("from","to")
-rel=cbind(id2=1:nrow(rel),rel)
-gr=igraph::graph_from_data_frame(temp,
-                                 vertices = rel,
-                                 directed = F)
+gr=igraph::graph_from_data_frame(temp,vertices = cbind(id2=1:nrow(rel),rel), directed = F)
+rm(temp)
+
 
 cl=components(gr,mode = "strong")
 gr<-induced.subgraph(gr,which(cl$membership==which.max(cl$csize)))
@@ -256,38 +254,34 @@ V(gr)$bt=log(betweenness(gr)+1)
 E(gr)$bt=log(edge.betweenness(gr,directed = F))
 E(gr)$bt=E(gr)$bt-min(E(gr)$bt)
 
-#Graficar
 set.seed(1994)
 D=distances(gr)
 D=Rtsne::Rtsne(D,max_iter=10000,pca_scale=T)$Y
 D=scale(D)
 D=svd(D)$u
 D=scale(D)
-
-library(plotly)
-library(ggplot2)
-
 D=as.data.frame(D)
 D=cbind(get.data.frame(gr,what = "vertices")[,-5],D)
+e=get.edgelist(gr,names = F)
 e=as.data.frame(e)
 colnames(e)=c("e1","e2")
+D$V1=-D$V1
+D$V2=-D$V2
 
-
-png("a.png",width = 10000,height = 5625,res = 10000/2500*72)
-
+#Graficar
+png("a.png",width = 10000,height = 10000,res = 10000/2500*72)
 par(mai=c(0,0,0,0),bg='black')
-plot(range(D$V1)*1.1,range(D$V2)*1.1, xaxs="i", yaxs="i",xaxt="none",yaxt="none",
+plot(range(D$V1),range(D$V2), xaxs="i", yaxs="i",xaxt="none",yaxt="none",
      bty="n",col='red',bg='black',asp=1,type='n')
 
 segments(x0 = D$V1[e[,1]],y0 = D$V2[e[,1]],
          x1 = D$V1[e[,2]],y1=D$V2[e[,2]],col=rgb(1,0,0,1-E(gr)$bt/max(E(gr)$bt)^5))
 
 points(D$V1,D$V2,col='blue',pch=19,cex=D$bt/max(D$bt)^5*10+2 )
-textplot(D$V1,D$V2,paste0('|',D$nm,'|'),new = F,col='white',cex = (D$bt/max(D$bt))^5*2.25+0.75,
-         font=c(2))
+textplot(D$V1,D$V2,paste0('|',D$nm,'|'),new = F,col='white',
+         cex = (D$bt/max(D$bt))^5*3.375+1.125,
+         font=c(2),xlim=range(D$V1),ylim=range(D$V2))
 dev.off()
 file.show("a.png")
 
 rm(D,e,gr,sl,cl)
-
-
