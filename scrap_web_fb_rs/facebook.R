@@ -240,47 +240,41 @@ save.image("red_social.RData")
 
 
 
-sl=red[,1]!=1 & (red[,1] %in% red[red[,1]==1,2]) & (red[,2] %in% red[red[,1]==1,2]) 
-temp=as.data.frame(red[sl,])
-colnames(temp)=c("from","to")
-gr=igraph::graph_from_data_frame(temp,vertices = cbind(id2=1:nrow(rel),rel), directed = F)
-rm(temp)
+gr=igraph::graph_from_data_frame(red,vertices = cbind(id2=1:nrow(rel),rel), directed = F)
+gr=induced_subgraph(gr,as.integer(ego(gr,order=1,nodes=1)[[1]])[-1])
 
+while(sum(betweenness(gr,directed = F)==0)!=0) {
+gr=induced_subgraph(gr,which(betweenness(gr,directed = F)!=0))
+}
 
-cl=components(gr,mode = "strong")
-gr<-induced.subgraph(gr,which(cl$membership==which.max(cl$csize)))
-gr<-simplify(gr)
-V(gr)$bt=log(betweenness(gr)+1)
-E(gr)$bt=log(edge.betweenness(gr,directed = F))
-E(gr)$bt=E(gr)$bt-min(E(gr)$bt)
+V(gr)$bt=log1p(betweenness(gr,directed = F))
+E(gr)$bt=log1p(edge.betweenness(gr,directed = F))
 
 set.seed(1994)
 D=distances(gr)
-D=Rtsne::Rtsne(D,max_iter=10000,pca_scale=T)$Y
-D=scale(D)
-D=svd(D)$u
-D=scale(D)
+D=Rtsne(as.dist(D),is_distance = T,perplexity=2,theta=0,max_iter=10000)$Y
+D=scale(svd(scale(D))$u)
+plot(D,pch=19)
+
 D=as.data.frame(D)
 D=cbind(get.data.frame(gr,what = "vertices")[,-5],D)
 e=get.edgelist(gr,names = F)
 e=as.data.frame(e)
 colnames(e)=c("e1","e2")
-D$V1=-D$V1
-D$V2=-D$V2
 
 #Graficar
-png("a.png",width = 10000,height = 10000,res = 10000/2500*72)
+png("a.png",width = 2048,height = 1493,res = 72)
 par(mai=c(0,0,0,0),bg='black')
 plot(range(D$V1),range(D$V2), xaxs="i", yaxs="i",xaxt="none",yaxt="none",
-     bty="n",col='red',bg='black',asp=1,type='n')
+bty="n",col='red',bg='black',type='n')
 
 segments(x0 = D$V1[e[,1]],y0 = D$V2[e[,1]],
-         x1 = D$V1[e[,2]],y1=D$V2[e[,2]],col=rgb(1,0,0,1-E(gr)$bt/max(E(gr)$bt)^5))
+x1 = D$V1[e[,2]],y1=D$V2[e[,2]],col=rgb(0,0,1,1-(1-E(gr)$bt/max(E(gr)$bt))^2))
 
-points(D$V1,D$V2,col='blue',pch=19,cex=D$bt/max(D$bt)^5*10+2 )
+points(D$V1,D$V2,col='darkgreen',pch=19,cex=D$bt/max(D$bt)^5*5+1 )
 textplot(D$V1,D$V2,paste0('|',D$nm,'|'),new = F,col='white',
-         cex = (D$bt/max(D$bt))^5*3.375+1.125,
-         font=c(2),xlim=range(D$V1),ylim=range(D$V2))
+cex = (D$bt/max(D$bt))^5*2+1,
+font=c(2),xlim=range(D$V1),ylim=range(D$V2))
 dev.off()
 file.show("a.png")
 
