@@ -1,20 +1,20 @@
 FUENTES 			
 ID FUENTES	URL FUENTES		
--1	https://biblio.flacsoandes.edu.ec/libros/digital/53323.pdf		
--2	https://estudioseconomicos.bce.fin.ec/index.php/RevistaCE/article/view/84/186		
--3	https://www.tdx.cat/bitstream/handle/10803/401183/cpnn1de1.pdf?sequence=1&isAllowed=y		
--4	https://www.dspace.espol.edu.ec/bitstream/123456789/2107/1/4204.pdf		
--5	"http://moxlad.cienciassociales.edu.uy/download?series_ids=22_184,23_190,19_127,19_96,19_147&countries_ids=30&from=1870&to=2010&language=es"		
+(1)	https://biblio.flacsoandes.edu.ec/libros/digital/53323.pdf		
+(2)	https://estudioseconomicos.bce.fin.ec/index.php/RevistaCE/article/view/84/186		
+(3)	https://www.tdx.cat/bitstream/handle/10803/401183/cpnn1de1.pdf?sequence=1&isAllowed=y		
+(4)	https://www.dspace.espol.edu.ec/bitstream/123456789/2107/1/4204.pdf		
+(5)	"http://moxlad.cienciassociales.edu.uy/download?series_ids=22_184,23_190,19_127,19_96,19_147&countries_ids=30&from=1870&to=2010&language=es"		
 			
 ORIGEN DE LOS VALORES			
 VALORES	ORIGEN	Pag	
 (1) INDICE DE PRECIO	Cuadro 2 TIPO DE CAMBlO E INDICE DE PRECIOS: 1914 - 1926 (Sucres por Dolar) 	28	
 (1) TIPO DE CAMBIO	Anexo 2 lNOICE DE PREClOS: 1921 - 1943 (a)	154	
-(2) INDICE DE PRECIO	Anexo 7: CirculaciÛn de billetes y precios		
-(2) TIPO DE CAMBIO	Anexo 6: EvoluciÛn del tipo de cambio promedio anual		
-(3) INDICE DE PRECIO 1	"Tabla III.17. Õndice de precios y tasa de inflaciÛn, Ecuador y AmÈrica Latina; Tabla IV.9. Õndice de precios y tasa de inflaciÛn, Ecuador y AmÈrica Latina, 1932-1938 "	124;164	
-(3) INDICE DE PRECIO 2	"Tabla VI.13. Precios internos e inflaciÛn, 1927-1937"	246	
-(4) INDICE DE PRECIO 1	Tabla I. Ecuador: InflaciÛn estimada desde 1910 ñ 1923	3	
+(2) INDICE DE PRECIO	Anexo 7: Circulaci√≥n de billetes y precios		
+(2) TIPO DE CAMBIO	Anexo 6: Evoluci√≥n del tipo de cambio promedio anual		
+(3) INDICE DE PRECIO 1	"Tabla III.17. √çndice de precios y tasa de inflaci√≥n, Ecuador y Am√©rica Latina; Tabla IV.9. √çndice de precios y tasa de inflaci√≥n, Ecuador y Am√©rica Latina, 1932-1938 "	124;164	
+(3) INDICE DE PRECIO 2	"Tabla VI.13. Precios internos e inflaci√≥n, 1927-1937"	246	
+(4) INDICE DE PRECIO 1	Tabla I. Ecuador: Inflaci√≥n estimada desde 1910 ‚Äì 1923	3	
 (4) INDICE DE PRECIO 2	Tabla II. Indice de precios internos (1937-1950) 	4	
 (5) INDICE DE PRECIO	IPC (1970=100)		
 (5) TIPO DE CAMBIO 1	Tipo de cambio nominal (UML de 1970/US$)		
