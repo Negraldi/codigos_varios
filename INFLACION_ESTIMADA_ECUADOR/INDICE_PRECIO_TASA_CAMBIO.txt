@@ -8,8 +8,8 @@ ID FUENTES	URL FUENTES
 
 ORIGEN DE LOS VALORES
 VALORES	ORIGEN	Pag
-(1) INDICE DE PRECIO	Cuadro 2 TIPO DE CAMBlO E INDICE DE PRECIOS: 1914 - 1926 (Sucres por Dolar) 	28
-(1) TIPO DE CAMBIO	Anexo 2 lNOICE DE PREClOS: 1921 - 1943 (a)	154
+(1) INDICE DE PRECIO	Anexo 2 lNOICE DE PREClOS: 1921 - 1943 (a)	154
+(1) TIPO DE CAMBIO	Cuadro 2 TIPO DE CAMBlO E INDICE DE PRECIOS: 1914 - 1926 (Sucres por Dolar) 	28
 (2) INDICE DE PRECIO	Anexo 7: Circulación de billetes y precios	
 (2) TIPO DE CAMBIO	Anexo 6: Evolución del tipo de cambio promedio anual	
 (3) INDICE DE PRECIO 1	"Tabla III.17. Índice de precios y tasa de inflación, Ecuador y América Latina; Tabla IV.9. Índice de precios y tasa de inflación, Ecuador y América Latina, 1932-1938 "	124;164
