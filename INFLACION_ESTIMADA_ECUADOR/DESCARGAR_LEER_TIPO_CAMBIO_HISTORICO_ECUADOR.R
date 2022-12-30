@@ -1,10 +1,15 @@
-### 1. Datos de tipo cambio Dolar a Sucre ####
+### 0. Leer las librerias a usar ####
 # Se cargan las librerías necesarias
 library(curl)
 library(readxl)
 library(stringi) 
+library(rvest)
+library(lubridate)
+library(readr)
+library(magrittr)
 library(dplyr)
 
+### 1. Datos de tipo cambio Dolar a Sucre ####
 # Se descarga el archivo con la información desde la url
 url <- "https://contenido.bce.fin.ec/documentos/MercadosInternacionales/Cotizaciones/tipoCambio.xls"
 destfile <- "tipoCambio.xls"
@@ -97,12 +102,6 @@ unlink(destfile)
 rm(destfile,indic_anio,nmx,url)
 
 ### 2. Datos del IPC del Ecuador ####
-# Cargar librerías
-library(curl)
-library(rvest)
-library(readxl)
-library(dplyr)
-
 # Leer el HTML de la pagina web
 h <- rvest::read_html("https://www.ecuadorencifras.gob.ec/indice-de-precios-al-consumidor/")
 
@@ -226,11 +225,6 @@ IPC_us <- IPC_us[order(IPC_us$anio12mes),]
 rownames(IPC_us) <- NULL
 
 ### 4. Fuentes Historicas ####
-# Se importan las librerias necesarias
-library(magrittr)
-library(lubridate)
-library(readr)
-
 # Se lee la url donde se encuentran los datos
 url <- 'https://raw.githubusercontent.com/Negraldi/codigos_varios/master/INFLACION_ESTIMADA_ECUADOR/INDICE_PRECIO_TASA_CAMBIO.txt'
 
